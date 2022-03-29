@@ -1,0 +1,40 @@
+<button class="mb-3"><%= link_to 'Back', posts_path %> </button>
+
+<%if current_user.role == 'moderator'%>
+  <% if @post.status == 'inactive'%>
+    <button><a href="/status/<%=@post.id%>">Publish</a></button>
+  <% else %>
+    <button><a href="/status/<%=@post.id%>">Unpublish</a> </button>
+  <% end %>
+  <button><%= link_to "Destroy", @post, method: :delete, data: { confirm: 'Are you sure?' }%> </button>
+<% end %>
+
+
+<div class="w-100 row">
+  <div class="card w-50">
+    <h3><%= @post.title %></h3>
+    <p><%= @post.body %></p>
+    <%= render partial: 'likes/like', locals: {likeable: @post} %>
+    <%= render partial: 'reports/report', locals: {reportable: @post} %>
+    
+  </div>
+  <div class="card w-50">
+    <h4>Suggestions</h4>
+    <%= render @post.suggestions.post_suggestions %>
+    <h4>Add new suggestion</h4>
+    <%= render partial: 'suggestions/child', locals: {post: @post, parent: nil}%>
+  </div>
+</div>
+
+
+
+
+
+<div class="w-25">
+<h4 class="mt-5">Comments</h4>
+<%= render @post.comments.replies %>
+</div>
+<h4>Add a comment:</h4>
+<%= render partial: 'comments/form', locals: {post: @post, parent: nil}%>
+
+

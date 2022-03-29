@@ -1,0 +1,5 @@
+<% if @report.reportable_type == 'Post'%>
+  $("#<%=@post.id%>-report").html("<%= j render 'reports/report', reportable: @post %>")
+<%else%>
+  $("#<%=@comment.id%>-report").html("<%= j render 'reports/report', reportable: @comment %>")
+<%end%>

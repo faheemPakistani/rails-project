@@ -1,0 +1,20 @@
+<%= javascript_pack_tag 'suggestions'%>
+
+<p class="d-flex w-25"><%= comment.body %></p>
+<small>by <%= comment.user.email%></small>
+<a class="reply-btn" href="#">reply</a>
+<div class="child-comments">
+  <%= render partial: 'comments/child', locals: {post: comment.post, parent: comment} %>
+</div>
+
+<% if current_user.id == comment.user_id%>
+  <%= link_to 'Edit', edit_post_comment_path(@post, comment)%>
+<%end%>
+
+<%= render partial: 'likes/like', locals: {likeable: comment} %>
+<%= render partial: 'reports/report', locals: {reportable: comment} %>
+
+<hr/>
+<div class="child">
+  <%= render comment.comments%>
+</div>

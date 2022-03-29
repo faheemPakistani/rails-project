@@ -1,0 +1,39 @@
+<%if !@posts.nil?%>
+<div class="d-flex justify-content-center">
+<div id="news" class="container-fluid mb-5 w-75 row justify-content-center">
+  <% @posts.each do |post| %>
+  <div class="news-main-div row justify-content-center padding">
+    <div class="card m-3">
+      <div class="news-child-div">
+        <div>
+          <p class="ml-2"></p>
+          <h2 class="ml-2 w-100"><%= post.title%></h2>
+          <small class="mt-0 text-muted"><%= post.status%></small>
+          <p class="row w-50 ml-2"><%= post.body%></p>
+          <hr class="m-5"/>
+          <div class="row ml-2 w-25">
+            <span class="mr-5"><i class="story-icon far fa-comments"></i> <strong><%= post.comments.replies.count %> Comments</strong></span>
+             <% post.comments.replies.first(2).each do |c|%>
+              <span class="card m-2"> <%= c.body %></span>
+             <%end%>
+              <hr class="m-1"/>
+            <span class="mt-2 mb-2"><i class="story-icon far fa-heart"></i> <strong> <%= post.likes.count%> Likes </strong></span>
+          </div>
+          <div class="col">
+            <%= link_to 'Read', post%>
+            <% if current_user.id == post.user_id%>
+              <%= link_to "Edit", edit_post_path(post)%>
+              <%= link_to "Destroy", post, method: :delete, data: { confirm: 'Are you sure?' }%>
+            <%end%>
+          <div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <% end %>
+</div>
+<%end%>
+<div>
+<br>
+
+

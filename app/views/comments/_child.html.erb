@@ -1,0 +1,11 @@
+<form action="<%= post_comments_path(post) %>" data-remote=true method="post">
+  <input type="hidden" required name="authenticity_token" value="<%= form_authenticity_token %>">
+  
+  <% if !parent.nil? %>
+    <input type="hidden" required name="comment[parent_id]" value="<%= parent.id %>">
+  <% end %>
+  <div>
+    <textarea type="text-area" required name="comment[body]" required rows="3" cols="20"></textarea>
+  </div>
+  <input type="submit" value="Submit">
+</form>

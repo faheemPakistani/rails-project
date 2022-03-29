@@ -1,0 +1,5 @@
+<% if @like.likeable_type == 'Post'%>
+  $("#<%=@post.id%>-like").html("<%= j render 'likes/like', likeable: @post %>")
+<%else%>
+  $("#<%=@comment.id%>-like").html("<%= j render 'likes/like', likeable: @comment %>")
+<%end%>

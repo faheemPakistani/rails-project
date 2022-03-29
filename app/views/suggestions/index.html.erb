@@ -1,0 +1,18 @@
+<h1>Suggestions</h1>
+<%if !@suggestion.nil?%>
+  <% @suggestion.each do |sugg| %>
+<div id="news" class="container-fluid mb-3">
+  <div class="news-main-div row justify-content-center padding">
+    <div class="card m-3">
+      <div class="news-child-div col-sx-12 col-sm-6 col-md-4 row">
+        <div>
+        <a href="/posts/<%=sugg.post_id%>">Show post</a>
+          <p class="row ml-2"><%= truncate(sugg.body.to_s, length: 100)%></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <% end %>
+<%end%>
+<br>

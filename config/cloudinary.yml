@@ -1,0 +1,17 @@
+development: 
+  cloud_name: "dcnuv41va"
+  api_key: "949922876465567"
+  api_secret: "pIXoYSrKC42zaOR0LqhOVd0VaoM"
+  secure: true
+
+production:
+  cloud_name: "dcnuv41va"
+  api_key: "949922876465567"
+  api_secret: "pIXoYSrKC42zaOR0LqhOVd0VaoM"
+  secure: true
+
+test:
+  cloud_name: "dcnuv41va"
+  api_key: "949922876465567"
+  api_secret: "pIXoYSrKC42zaOR0LqhOVd0VaoM"
+  secure: false
