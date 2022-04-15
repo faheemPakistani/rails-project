@@ -2,6 +2,9 @@
 
 # Rails routing file
 Rails.application.routes.draw do
+  resources :classrooms do
+    resources :announcements
+  end
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   resources :reports, only: [:create, :destroy]
@@ -11,7 +14,7 @@ Rails.application.routes.draw do
     resources :suggestions
   end
   authenticated :user do
-    root to: 'posts#index'
+    root to: 'classrooms#index'
   end
   root to: redirect('/users/sign_in')
   get 'status/:id', to: 'moderators#status'

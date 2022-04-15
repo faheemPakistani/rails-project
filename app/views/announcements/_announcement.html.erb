@@ -1,0 +1,15 @@
+
+<p class="d-flex w-25"><%= announcement.body %></p>
+<a class="reply-btn" href="#">reply</a>
+<div class="child-announcements">
+  <%= render partial: 'announcements/child', locals: {classroom: announcement.classroom, parent: announcement} %>
+</div>
+
+<% if current_user.id == announcement.user_id%>
+  <%= link_to 'Edit', edit_classroom_announcement_path(@classroom, announcement)%>
+<%end%>
+
+<hr/>
+<div class="child">
+  <%= render announcement.announcements%>
+</div>

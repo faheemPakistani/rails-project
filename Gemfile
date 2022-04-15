@@ -33,6 +33,7 @@ gem 'jquery-rails'
 gem 'pundit'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'rails_admin'
+gem 'material_icons'
 # Use ActiveStorage variant
 gem 'bootstrap'
 gem 'popper_js'

@@ -1,0 +1,42 @@
+<%= form_with(model: classroom, local: true) do |form| %>
+  <% if classroom.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(classroom.errors.count, "error") %> prohibited this classroom from being saved:</h2>
+
+      <ul>
+      <% classroom.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="classroom_form">
+    <div class="card p-5 mt-5">
+      <div class="field classroom_field">
+        <span class="label_text"> <%= form.label :title %> </span> <br />
+        <%= form.text_field :title, required: true, :size=>"46", placeholder: "Enter Title" %>
+      </div>
+
+      <div class="field mt-4">
+        <span class="label_text"> <%= form.label :description %> </span> <br />
+        <%= form.text_area :description, :size=>"50", placeholder: "Enter Description"%>
+      </div>
+
+      <div class="image-preview">
+        <div class="field mt-4">
+          <span class="label_text"> <%= form.label "Profile Picture" %> </span> <br />
+          <%= form.file_field :avatar, class:"file" %>
+        </div>
+        <div class="upload-preview">
+          <img />
+        </div>
+      </div>
+      <div class="actions new_classroom mt-5">
+        <%= form.submit %>
+      </div>
+    </div>
+
+  </div>
+
+<% end %>

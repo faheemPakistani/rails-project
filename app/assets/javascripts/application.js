@@ -17,6 +17,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require popper
+//= require classrooms
 //= require_tree.
 
 document.querySelectorAll('.reply-btn').forEach((el)=>{

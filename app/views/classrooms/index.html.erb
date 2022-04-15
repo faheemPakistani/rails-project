@@ -1,0 +1,47 @@
+<h1>Classrooms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @classrooms.each do |classroom| %>
+      <div class="news-main-div row justify-content-center padding">
+        <div class=" m-3">
+        <div class="card news-child-div">
+          <div>
+            <p class="ml-2"></p>
+
+            <div class="classroom_header">
+              <div>
+                <%if classroom.avatar.attached?%>
+                  <img class="classroom_avatar" src="<%= (url_for(classroom.avatar)) %>"
+                <%end%>
+
+                <h6 class="ml-2 classroom_title"><%= classroom.title%> </h6>
+              </div>
+            </div>
+
+            <h6 class="classroom_description"><%= classroom.description%></h6>
+              <%= button_to 'Open', classroom, :class => "classroom_read_button", :method => :get%>
+            <div class="col">
+              <% if current_user.id == classroom.user_id%>
+                <%= link_to "Edit", edit_classroom_path(classroom)%>
+                <%= link_to "Destroy", classroom, method: :delete, data: { confirm: 'Are you sure?' }%>
+              <%end%>
+            <div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<div class="new_classroom">
+  <%= button_to 'New Classroom', new_classroom_path, :method => :get, :class => "new_classroom_button mb-5" %>
+</div>

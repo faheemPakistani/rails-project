@@ -17,3 +17,5 @@
 
 console.log('Hello World from Webpacker')
 import "actiontext"
+import "font-awesome-sprockets";
+import "font-awesome";
