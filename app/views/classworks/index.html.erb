@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Classworks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @classworks.each do |classwork| %>
+      <tr>
+        <td><%= link_to 'Show', classwork %></td>
+        <td><%= link_to 'Edit', edit_classwork_path(classwork) %></td>
+        <td><%= link_to 'Destroy', classwork, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Classwork', new_classwork_path %>

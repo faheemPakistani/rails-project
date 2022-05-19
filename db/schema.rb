@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_14_165204) do
+ActiveRecord::Schema.define(version: 2022_05_19_152601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2022_04_14_165204) do
     t.bigint "classroom_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status"
     t.index ["classroom_id"], name: "index_announcements_on_classroom_id"
     t.index ["user_id"], name: "index_announcements_on_user_id"
   end
@@ -62,7 +63,19 @@ ActiveRecord::Schema.define(version: 2022_04_14_165204) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "class_code"
     t.index ["user_id"], name: "index_classrooms_on_user_id"
+  end
+
+  create_table "classworks", force: :cascade do |t|
+    t.integer "parent_id"
+    t.integer "work_type"
+    t.bigint "user_id"
+    t.bigint "classroom_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_classworks_on_classroom_id"
+    t.index ["user_id"], name: "index_classworks_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -108,6 +121,17 @@ ActiveRecord::Schema.define(version: 2022_04_14_165204) do
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
+  create_table "submissions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "classroom_id"
+    t.bigint "classwork_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_submissions_on_classroom_id"
+    t.index ["classwork_id"], name: "index_submissions_on_classwork_id"
+    t.index ["user_id"], name: "index_submissions_on_user_id"
+  end
+
   create_table "suggestions", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "post_id"
@@ -117,6 +141,15 @@ ActiveRecord::Schema.define(version: 2022_04_14_165204) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_suggestions_on_post_id"
     t.index ["user_id"], name: "index_suggestions_on_user_id"
+  end
+
+  create_table "userclasses", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "classroom_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_userclasses_on_classroom_id"
+    t.index ["user_id"], name: "index_userclasses_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -149,11 +182,18 @@ ActiveRecord::Schema.define(version: 2022_04_14_165204) do
   add_foreign_key "announcements", "classrooms"
   add_foreign_key "announcements", "users"
   add_foreign_key "classrooms", "users"
+  add_foreign_key "classworks", "classrooms"
+  add_foreign_key "classworks", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "reports", "users"
+  add_foreign_key "submissions", "classrooms"
+  add_foreign_key "submissions", "classworks"
+  add_foreign_key "submissions", "users"
   add_foreign_key "suggestions", "posts"
   add_foreign_key "suggestions", "users"
+  add_foreign_key "userclasses", "classrooms"
+  add_foreign_key "userclasses", "users"
 end

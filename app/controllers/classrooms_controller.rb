@@ -3,12 +3,20 @@ class ClassroomsController < ApplicationController
 
   # GET /classrooms or /classrooms.json
   def index
-    @classrooms = Classroom.all
+    if current_user.user_type == 'teacher'
+      @classrooms = Classroom.where(user_id: current_user.id) || []
+    else
+      @joined_classes = Userclass.where(user_id: current_user.id) || []
+      @classrooms = Classroom.find(@joined_classes.to_ary.map { |string| string.classroom_id })
+    end
   end
 
   # GET /classrooms/1 or /classrooms/1.json
   def show
     @classroom = Classroom.find_by(id: params[:id])
+    @people = Userclass.where(classroom_id: @classroom.id) || []
+    @users = User.find(@people.to_ary.map { |string| string.classroom_id })
+    @teacher = User.find_by(id: @classroom.user_id)
     if @classroom.nil?
       flash[:message] = @classroom.errors.full_messages.to_sentence
     end
@@ -27,6 +35,8 @@ class ClassroomsController < ApplicationController
   def create
     @classroom = Classroom.new(classroom_params)
     @classroom.user_id = current_user.id
+    @code = ([*('A'..'Z'),*('a'..'z'),*('0'..'9')]-%w(0 1 I O)).sample(7).join
+    @classroom.class_code = @code
     respond_to do |format|
       if @classroom.save
         format.html { redirect_to classroom_url(@classroom), notice: "Classroom was successfully created." }

@@ -39,6 +39,9 @@ gem 'bootstrap'
 gem 'popper_js'
 gem 'mini_magick', '~> 4.8'
 gem 'image_processing'
+gem 'image_magick'
+# gem 'graphicsmagick'
+gem 'rmagick'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

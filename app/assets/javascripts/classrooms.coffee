@@ -18,4 +18,3 @@ $(document).ready ->
 
     reader.readAsDataURL file
     return
-  return

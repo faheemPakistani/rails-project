@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :reports
   has_many :posts, dependent: :destroy
   has_many :announcements, dependent: :destroy
+  has_many :classworks, dependent: :destroy
   has_many :classrooms, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :lockable

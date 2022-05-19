@@ -1,0 +1,2 @@
+module UserclassesHelper
+end

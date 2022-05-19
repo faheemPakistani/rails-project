@@ -18,8 +18,7 @@ class AnnouncementsController < ApplicationController
   def create
     @classroom = Classroom.find(params[:classroom_id])
     flash[:message] = @classroom.errors.full_messages.to_sentence if @classroom.nil?
-    @announcement = @classroom.announcements.build(announcement_params)
-    @announcement.user_id = current_user.id
+    @announcement = @classroom.announcements.create(announcement_params.merge(user_id: current_user.id))
     if @announcement.body.blank?
       flash[:message] = @announcement.errors.full_messages.to_sentence
     else
@@ -59,6 +58,6 @@ class AnnouncementsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def announcement_params
-      params.require(:announcement).permit(:body, :parent_id)
+      params.require(:announcement).permit(:body, :parent_id, :status)
     end
 end

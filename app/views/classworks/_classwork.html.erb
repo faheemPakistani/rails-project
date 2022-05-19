@@ -1,0 +1,13 @@
+<div class='d-flex flex-column w-100'>
+  <p class="d"><%= classwork.body %></p>
+  <% if classwork.work_type == 'assignment' %>
+    <%= form_for('/submission', remote: true) do |form|%>
+        <span class="label_text"> 
+        <%= form.label "Profile Picture" %> </span> <br />
+          <%= form.file_field :solution, class:"file" %>
+          <div class="actions">
+            <%= form.submit %>
+          </div>
+    <% end -%>
+  <% end %>
+</div>

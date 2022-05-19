@@ -2,8 +2,12 @@
 
 # Rails routing file
 Rails.application.routes.draw do
+  
+  resources :submissions
+  resources :userclasses
   resources :classrooms do
     resources :announcements
+    resources :classworks
   end
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
@@ -18,8 +22,10 @@ Rails.application.routes.draw do
   end
   root to: redirect('/users/sign_in')
   get 'status/:id', to: 'moderators#status'
+  get 'join_class', to: 'userclasses#new'
   get 'moderator', to: 'moderators#index'
   get 'user/:user_id/posts', to: 'posts#index'
   get 'user/:user_id/suggestions', to: 'suggestions#index'
+  post 'submission', to: 'submissions#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

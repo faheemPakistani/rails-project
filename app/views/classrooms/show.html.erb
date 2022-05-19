@@ -1,37 +1,100 @@
-<div class="news-main-div row justify-content-center padding">
-  <div class="m-3">
-    <div class="card news-child-div">
-      <div>
-        <p class="ml-2"></p>
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <span class="nav-link active discussion" role="button">Discussion</span>
+  </li>
+  <li class="nav-item">
+    <span class="nav-link classwork" role="button">Classwork</span>
+  </li>
+  <li class="nav-item">
+    <span class="nav-link people" role="button">People</span>
+  </li>
+</ul>
 
-        <div class="classroom_header">
+
+<div class='w-full justify-content-center m-auto'>
+  <div class="w-75 news-main-div row justify-content-center padding m-auto">
+    <div class="m-3">
+      <div class="card news-child-div">
         <div>
-            <%if @classroom.avatar.attached?%>
-            <img class="classroom_avatar" src="<%= (url_for(@classroom.avatar)) %>"
-            <%end%>
-            <h6 class="ml-2 classroom_title"><%= @classroom.title%> </h6>
+          <p class="ml-2"></p>
+
+          <div class="classroom_header">
+            <div>
+                <%if @classroom.avatar.attached?%>
+                  <img class="classroom_avatar" src="<%= (url_for(@classroom.avatar)) %>"
+                <%end%>
+                <h6 class="ml-2 classroom_title"><%= @classroom.title%> </h6>
+            </div>
+          </div>
+          <h6 class="classroom_description"><%= @classroom.description%></h6>
+          <h6 class="classroom_description">Code: <%= @classroom.class_code%></h6>
+            <%= button_to "Edit", edit_classroom_path(@classroom), :class => "classroom_read_button", :method => :get%>
+          <div class="col">
+          <% if current_user.id == @classroom.user_id%>
+              <%= link_to "Edit", edit_classroom_path(@classroom)%>
+              <%= link_to "Destroy", @classroom, method: :delete, data: { confirm: 'Are you sure?' }%>
+          <%end%>
+          <div>
         </div>
-        </div>
-        <h6 class="classroom_description"><%= @classroom.description%></h6>
-          <%= button_to "Edit", edit_classroom_path(@classroom), :class => "classroom_read_button", :method => :get%>
-        <div class="col">
-        <% if current_user.id == @classroom.user_id%>
-            <%= link_to "Edit", edit_classroom_path(@classroom)%>
-            <%= link_to "Destroy", @classroom, method: :delete, data: { confirm: 'Are you sure?' }%>
-        <%end%>
-        <div>
+      </div>
     </div>
-    </div>
-</div>
+  </div>
+
+  <%= link_to 'Edit', edit_classroom_path(@classroom) %> |
+  <%= link_to 'Back', classrooms_path %>
+
+  <div class='announcement_hide'>
+    <h4>Add an Announcement:</h4>
+    <div><%= render partial: 'announcements/form', locals: {classroom: @classroom, parent: nil}%></div>
+      <div class="w-25">
+        <h4 class="mt-5">Class Discussion</h4>
+        <%= render @classroom.announcements.announcement_replies %>
+      </div>
+  </div>
+
+  <div class='classwork_hide'>
+    <h4>Add Classwork:</h4>
+    <div><%= render partial: 'classworks/form', locals: {classroom: @classroom, parent: nil}%></div>
+      <div class="w-25">
+        <h4 class="mt-5">Add classwork</h4>
+        <%= render @classroom.classworks %>
+      </div>
+  </div>
+
+  <div class='people_hide'>
+    <h4>Teacher</h4>
+    <%= @teacher&.email %>
+    <h4>Enrolled Students:</h4>
+    <% @users.each do |user| %>
+      <%= user.email %>
+    <%end%>
+  </div>
+
 </div>
 
-<%= link_to 'Edit', edit_classroom_path(@classroom) %> |
-<%= link_to 'Back', classrooms_path %>
+<script>
 
-<div class="w-25">
-  <h4 class="mt-5">Class Discussion</h4>
-  <%= render @classroom.announcements.repliess %>
-</div>
+  $(".classwork").on("click",function(e){
+    e.preventDefault()
+    $(".announcement_hide").hide();
+    $(".people_hide").hide();
+    $(".classwork_hide").show();
 
-<h4>Add an Announcement:</h4>
-<%= render partial: 'announcements/form', locals: {classroom: @classroom, parent: nil}%>
+  });
+
+  $(".people").on("click",function(e){
+    e.preventDefault()
+    $(".announcement_hide").hide();
+    $(".classwork_hide").hide();
+    $(".people_hide").show();
+  });
+
+  $(".discussion").on("click",function(e){
+    e.preventDefault()
+    $(".people_hide").hide();
+    $(".classwork_hide").hide();
+    $(".announcement_hide").show();
+    
+  });
+
+</script>

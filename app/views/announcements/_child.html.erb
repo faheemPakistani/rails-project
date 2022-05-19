@@ -1,9 +1,10 @@
-<form action="<%= classroom_announcements_path(announcement) %>" data-remote=true method="post">
+<form action="<%= classroom_announcements_path(classroom) %>" data-remote=true method="post">
   <input type="hidden" required name="authenticity_token" value="<%= form_authenticity_token %>">
 
   <% if !parent.nil? %>
     <input type="hidden" required name="announcement[parent_id]" value="<%= parent.id %>">
   <% end %>
+
   <div>
     <textarea type="text-area" required name="announcement[body]" required rows="3" cols="20"></textarea>
   </div>

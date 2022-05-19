@@ -1,15 +1,50 @@
+<div class='d-flex flex-column w-100'>
+  <p class="d"><%= announcement.body %></p>
 
-<p class="d-flex w-25"><%= announcement.body %></p>
-<a class="reply-btn" href="#">reply</a>
-<div class="child-announcements">
-  <%= render partial: 'announcements/child', locals: {classroom: announcement.classroom, parent: announcement} %>
+  <div class='float-right'>
+    <a class="reply-btn" href="#">Reply</a>
+    <div class="child-announcements">
+      <%= render partial: 'announcements/child', locals: {classroom: announcement.classroom, parent: announcement} %>
+    </div>
+    <% if current_user.id == announcement.user_id%>
+      <%= link_to 'Edit', edit_classroom_announcement_path(@classroom, announcement)%>
+    <%end%>
+
+    <a href='#' class='view-btn'>Replies</a>
+  </div>
+  <div class="child">
+    <%= render announcement.announcements%>
+  </div>
 </div>
 
-<% if current_user.id == announcement.user_id%>
-  <%= link_to 'Edit', edit_classroom_announcement_path(@classroom, announcement)%>
-<%end%>
 
-<hr/>
-<div class="child">
-  <%= render announcement.announcements%>
-</div>
+<script>
+  
+
+  $(".view-btn").click(function(e) {
+    e.preventDefault()
+    $(".child").toggle();
+  });
+
+  $('.view-btn').click(function() {
+    if ($.trim($(this).text()) == 'Replies') {
+      $(this).text('Hide Replies');
+    } else {
+      $(this).text('Replies');
+      }
+  });
+
+  $(".reply-btn").on("click",function(e){
+    e.preventDefault()
+    $(".child-announcements").toggle();
+  });
+
+  $('.reply-btn').click(function() {
+    if ($.trim($(this).text()) == 'Reply') {
+      $(this).text('Cancel');
+    } else {
+      $(this).text('Reply');
+      }
+  });
+
+</script>

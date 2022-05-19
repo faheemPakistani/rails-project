@@ -1,5 +1,6 @@
 <figure class="d-flex attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.representable? %>
+    <a target="_blank" rel="noopener noreferrer" href='<%= blob.service_url%>'>View </a>
     <%= image_tag blob.representation(resize: local_assigns[:in_gallery] ? "400x200" : "600x400") %>
   <% end %>
 </figure>

@@ -119,6 +119,7 @@ GEM
       domain_name (~> 0.5)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
+    image_magick (0.1.9)
     image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
@@ -241,6 +242,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.5)
+    rmagick (4.2.5)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     ruby_dep (1.5.0)
@@ -326,6 +328,7 @@ DEPENDENCIES
   cloudinary
   coffee-rails (~> 4.2)
   devise
+  image_magick
   image_processing
   jbuilder (~> 2.5)
   jquery-rails
@@ -338,6 +341,7 @@ DEPENDENCIES
   pundit
   rails (~> 5.2.6)
   rails_admin
+  rmagick
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

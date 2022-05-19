@@ -1,0 +1,30 @@
+
+<div class="mb-3">
+<%= form_with(model: userclass, local: true) do |form| %>
+  <% if userclass.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(userclass.errors.count, "error") %> prohibited this userclass from being saved:</h2>
+
+      <ul>
+      <% userclass.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="classroom_form">
+    <div class="card p-5 mt-5">
+
+    <div class="field">
+      <%= form.text_field :class_code, placeholder: "Enter Class code" %>
+    </div>
+      <div class="actions new_classroom mt-5">
+        <button type="submit" class="btn btn-primary">Join Classroom</button>
+      </div>
+    </div>
+
+  </div>
+
+<% end %>
+</div>
