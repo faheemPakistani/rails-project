@@ -3,11 +3,11 @@
 # Rails routing file
 Rails.application.routes.draw do
   
-  resources :submissions
   resources :userclasses
   resources :classrooms do
     resources :announcements
     resources :classworks
+    resources :submissions
   end
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users

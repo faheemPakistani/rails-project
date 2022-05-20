@@ -21,17 +21,19 @@ class SubmissionsController < ApplicationController
 
   # POST /submissions or /submissions.json
   def create
-    @submission = Submission.new(submission_params)
-
-    # respond_to do |format|
-    #   if @submission.save
-    #     format.html { redirect_to submission_url(@submission), notice: "Submission was successfully created." }
-    #     format.json { render :show, status: :created, location: @submission }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @submission.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    @classroom = Classroom.find(params[:submission][:classroom_id])
+    flash[:message] = @classroom.errors.full_messages.to_sentence if @classroom.nil?
+    byebug
+    @submission = @classroom.submissions.create(submission_params.merge(user_id: current_user.id))
+    respond_to do |format|
+      if @submission.save
+        format.html { redirect_to classrooms_path, notice: "Submission was successfully created." }
+        format.json { render :show, status: :created, location: @submission }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @submission.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /submissions/1 or /submissions/1.json
@@ -65,6 +67,6 @@ class SubmissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def submission_params
-      params.require(:submission).permit(:solution)
+      params.require(:submission).permit(:solution, :classwork_id, :classroom_id)
     end
 end

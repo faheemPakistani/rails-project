@@ -44,7 +44,7 @@
   <%= link_to 'Back', classrooms_path %>
 
   <div class='announcement_hide'>
-    <h4>Add an Announcement:</h4>
+    <h4>Start Discussion:</h4>
     <div><%= render partial: 'announcements/form', locals: {classroom: @classroom, parent: nil}%></div>
       <div class="w-25">
         <h4 class="mt-5">Class Discussion</h4>
@@ -55,10 +55,17 @@
   <div class='classwork_hide'>
     <h4>Add Classwork:</h4>
     <div><%= render partial: 'classworks/form', locals: {classroom: @classroom, parent: nil}%></div>
-      <div class="w-25">
-        <h4 class="mt-5">Add classwork</h4>
-        <%= render @classroom.classworks %>
+
+    <div class="w-25">
+      <h4 class="mt-5">Add classwork</h4>
+      <%= render @classroom.classworks %>
       </div>
+      
+      <div class="w-25">
+      <h4 class="mt-5">Class Submissions</h4>
+      <%= render @classroom.submissions %>
+    </div>
+
   </div>
 
   <div class='people_hide'>

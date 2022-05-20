@@ -16,7 +16,7 @@ class ClassroomsController < ApplicationController
     @classroom = Classroom.find_by(id: params[:id])
     @people = Userclass.where(classroom_id: @classroom.id) || []
     @users = User.find(@people.to_ary.map { |string| string.classroom_id })
-    @teacher = User.find_by(id: @classroom.user_id)
+    @teacher = User.find_by(id: @classroom.user_id) || ''
     if @classroom.nil?
       flash[:message] = @classroom.errors.full_messages.to_sentence
     end
