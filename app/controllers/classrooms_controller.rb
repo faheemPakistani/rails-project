@@ -14,6 +14,7 @@ class ClassroomsController < ApplicationController
   # GET /classrooms/1 or /classrooms/1.json
   def show
     @classroom = Classroom.find_by(id: params[:id])
+    @classwork = Classwork.where(classroom_id: @classroom.id)
     @people = Userclass.where(classroom_id: @classroom.id) || []
     @users = User.find(@people.to_ary.map { |string| string.classroom_id })
     @teacher = User.find_by(id: @classroom.user_id) || ''

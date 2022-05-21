@@ -11,11 +11,15 @@
 
   <tbody>
     <% @classworks.each do |classwork| %>
-      <tr>
-        <td><%= link_to 'Show', classwork %></td>
-        <td><%= link_to 'Edit', edit_classwork_path(classwork) %></td>
-        <td><%= link_to 'Destroy', classwork, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class='d-flex flex-column w-100'>
+        <% if classwork.work_type == 'assignment' %>
+          <p class="d"><%= classwork.body %></p>
+          <a class='nav-link' role='button' href='/assignment/<%=classwork.id%>/submissions'>View Submissions</a>
+        <% else %>
+          <p class="d"><%= classwork.body %></p>
+        <% end %>
+        <hr/>
+      </div>
     <% end %>
   </tbody>
 </table>

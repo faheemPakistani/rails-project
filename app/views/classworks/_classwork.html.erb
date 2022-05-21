@@ -2,13 +2,14 @@
   <p class="d"><%= classwork.body %></p>
   <% if classwork.work_type == 'assignment' %>
 
-  <%= form_with model: [@classroom, @classroom.submissions.build ] do |form| %>
+  <%= form_with model: [classwork, classwork.submissions.build ] do |form| %>
     <p>
-    <%= form.file_field :solution, class:"file" %>
+      <%= form.file_field :solution, class:"file" %>
     </p>
-        <input type="hidden" name="submission[classwork_id]" value="<%= classwork.id %>"/>
-        <input type="hidden" name="submission[classroom_id]" value="<%= @classroom.id %>"/>
-        <%= form.submit "Create" %>  
-        <% end %>
+    <input type="hidden" name="submission[classwork_id]" value="<%= classwork.id %>"/>
+    <input type="hidden" name="submission[classroom_id]" value="<%= @classroom.id %>"/>
+    <%= form.submit "Submit" %>  
+    <% end %>
   <% end %>
+  <hr/>
 </div>

@@ -3,7 +3,7 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions or /submissions.json
   def index
-    @submissions = Submission.all
+    @submissions = Submission.where(classwork_id: params[:classwork_id]).order(id: :desc)
   end
 
   # GET /submissions/1 or /submissions/1.json
@@ -21,10 +21,9 @@ class SubmissionsController < ApplicationController
 
   # POST /submissions or /submissions.json
   def create
-    @classroom = Classroom.find(params[:submission][:classroom_id])
-    flash[:message] = @classroom.errors.full_messages.to_sentence if @classroom.nil?
-    byebug
-    @submission = @classroom.submissions.create(submission_params.merge(user_id: current_user.id))
+    @classwork = Classwork.find(params[:submission][:classwork_id])
+    flash[:message] = @classwork.errors.full_messages.to_sentence if @classwork.nil?
+    @submission = @classwork.submissions.create(submission_params.merge(user_id: current_user.id))
     respond_to do |format|
       if @submission.save
         format.html { redirect_to classrooms_path, notice: "Submission was successfully created." }

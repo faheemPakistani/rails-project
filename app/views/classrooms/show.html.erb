@@ -8,6 +8,9 @@
   <li class="nav-item">
     <span class="nav-link people" role="button">People</span>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" role="button" href='/classrooms/<%=@classroom.id%>/assignments'>Assignment Submissions</a>
+  </li>
 </ul>
 
 
@@ -60,12 +63,6 @@
       <h4 class="mt-5">Add classwork</h4>
       <%= render @classroom.classworks %>
       </div>
-      
-      <div class="w-25">
-      <h4 class="mt-5">Class Submissions</h4>
-      <%= render @classroom.submissions %>
-    </div>
-
   </div>
 
   <div class='people_hide'>

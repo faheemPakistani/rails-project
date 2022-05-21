@@ -5,4 +5,6 @@ class Submission < ApplicationRecord
     validates_associated :user
     belongs_to :classroom
     validates_associated :classroom
+    belongs_to :classwork
+    validates_associated :classwork
 end

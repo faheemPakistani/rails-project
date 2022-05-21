@@ -12,5 +12,4 @@ class Classwork < ApplicationRecord
     has_many :announcements, foreign_key: :parent_id
     has_many :submissions, dependent: :destroy
 
-
 end

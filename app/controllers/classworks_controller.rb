@@ -3,7 +3,7 @@ class ClassworksController < ApplicationController
 
   # GET /classworks or /classworks.json
   def index
-    @classworks = Classwork.all
+    @classworks = Classwork.where(classroom_id: params[:classroom_id]).order(id: :desc)
   end
 
   # GET /classworks/1 or /classworks/1.json
