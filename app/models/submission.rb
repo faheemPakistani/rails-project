@@ -7,4 +7,6 @@ class Submission < ApplicationRecord
     validates_associated :classroom
     belongs_to :classwork
     validates_associated :classwork
+
+    scope :user, ->(user_id) { User.where(id: user_id) }
 end

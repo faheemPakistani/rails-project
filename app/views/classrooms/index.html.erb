@@ -30,7 +30,7 @@
             <div class="col">
               <% if current_user.id == classroom.user_id%>
                 <%= link_to "Edit", edit_classroom_path(classroom)%>
-                <%= link_to "Destroy", classroom, method: :delete, data: { confirm: 'Are you sure?' }%>
+                <%= link_to "Delete", classroom, method: :delete, data: { confirm: 'Are you sure?' }%>
               <%end%>
             <div>
           </div>
@@ -42,6 +42,3 @@
 </table>
 
 <br>
-<div class="new_classroom">
-  <%= button_to 'New Classroom', new_classroom_path, :method => :get, :class => "new_classroom_button mb-5" %>
-</div>

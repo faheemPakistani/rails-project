@@ -12,15 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, required: true %>
+    <br><br>
+    <h5 class="mt-6"><%= form.label :title %><span>  </span><%= form.text_field :title, required: true %></h5>
   </div>
   <div class="field">
-    <%= form.label :body %>
-    <%= form.rich_text_area :body, validate: { presence: true } %>
+    <br>
+    <h5 class="mt-6"><%= form.label :body %><span>  </span><%= form.rich_text_area :body, validate: { presence: true }, :class => "" %></h5>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div>
+    <%= form.submit "Submit", :class => "btn btn-sm btn-outline-primary padding-left: 2.5em; padding-right: 2.5rem;" %>
   </div>
 <% end %>

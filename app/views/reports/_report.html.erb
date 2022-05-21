@@ -1,18 +1,19 @@
-<div id="<%=reportable.id%>-report">
-<%= reportable.reports.count%> Reports
-<% report = current_user.reports.find_by(reportable: reportable) %>
-<% if report.nil?%>
-  <form action="/reports" data-remote=true method="post">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"> 
-    <input type="hidden" name="report[reportable_id]" value="<%= reportable.id %>" >
-    <input type="hidden" name="report[reportable_type]" value="<%= reportable.class.to_s%>" >
-    <input type="submit" value="Report">
-  </form>
-<% else %>
-  <form action="<%= report_path(report)%>" data-remote=true method="post">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"> 
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Unreport">
-  </form>
-<%end%>
+<div class='d-flex' id="<%=reportable.id%>-report">
+  <%= reportable.reports.count%>
+  <% report = current_user.reports.find_by(reportable: reportable) %>
+  <% if report.nil?%>
+    <form action="/reports" data-remote=true method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="report[reportable_id]" value="<%= reportable.id %>" >
+      <input type="hidden" name="report[reportable_type]" value="<%= reportable.class.to_s%>" >
+      <button type="submit" value="Report" class="btn btn-sm btn-outline-primary">Report</button>
+
+    </form>
+  <% else %>
+    <form action="<%= report_path(report)%>" data-remote=true method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="_method" value="DELETE">
+      <button type="submit" value="Unreport" class="btn btn-sm btn-outline-primary">Unreport</button>
+    </form>
+  <%end%>
 </div>

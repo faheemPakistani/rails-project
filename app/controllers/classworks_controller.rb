@@ -63,6 +63,6 @@ class ClassworksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def classwork_params
-      params.require(:classwork).permit(:body, :parent_id, :work_type)
+      params.require(:classwork).permit(:body, :parent_id, :work_type, :expiry)
     end
 end

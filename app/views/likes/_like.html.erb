@@ -1,18 +1,18 @@
-<div id="<%=likeable.id%>-like">
-  <%= likeable.likes.count%> Likes
+<div class="d-flex flex justify-content-center" id="<%=likeable.id%>-like">
+  <%= likeable.likes.count%>
   <% like = current_user.likes.find_by(likeable: likeable) %>
   <% if like.nil?%>
     <form action="/likes" data-remote=true method="post">
-      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"> 
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
       <input type="hidden" name="like[likeable_id]" value="<%= likeable.id %>" >
       <input type="hidden" name="like[likeable_type]" value="<%= likeable.class.to_s%>" >
-      <input type="submit" value="Like">
+      <button type="submit" value="Like" class="btn btn-sm btn-outline-primary">Like</button>
     </form>
   <% else %>
     <form action="<%= like_path(like)%>" data-remote=true method="post">
-      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"> 
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
       <input type="hidden" name="_method" value="DELETE">
-      <input type="submit" value="Unlike">
+      <button type="submit" value="Unlike" class="btn btn-sm btn-outline-primary">Unlike</button>
     </form>
-  <%end%> 
+  <%end%>
 </div>

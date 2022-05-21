@@ -1,7 +1,8 @@
 <%= javascript_pack_tag 'suggestions'%>
 
-<p class="d-flex w-25"><%= comment.body %></p>
-<small>by <%= comment.user.email%></small>
+<p><%= comment.body %> by <%= comment.user.name%></p>
+
+
 <a class="reply-btn" href="#">reply</a>
 <div class="child-comments">
   <%= render partial: 'comments/child', locals: {post: comment.post, parent: comment} %>
@@ -11,8 +12,11 @@
   <%= link_to 'Edit', edit_post_comment_path(@post, comment)%>
 <%end%>
 
-<%= render partial: 'likes/like', locals: {likeable: comment} %>
-<%= render partial: 'reports/report', locals: {reportable: comment} %>
+<br><br>
+
+<div class="d-flex flex-row">
+  <p class="d-flex flex-row justify-content-center"><span class='ml-2'><%= render partial: 'likes/like', locals: {likeable: @post}%></span> <span class='ml-2'> <%= render partial: 'reports/report', locals: {reportable: @post} %></span></p>
+</div>
 
 <hr/>
 <div class="child">

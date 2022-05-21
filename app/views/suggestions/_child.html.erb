@@ -3,8 +3,6 @@
   <% if !parent.nil? %>
     <input type="hidden" name="suggestion[parent_id]" value="<%= parent.id %>">
   <% end %>
-  <div>
-    <textarea  type="text_area" required name="suggestion[body]" rows="3" cols="20"></textarea>
-  </div>
-  <input type="submit" value="Submit">
+
+  <p>Add New Suggestion: <textarea  type="text_field" :body, required name="suggestion[body]" rows="3" cols="20"></textarea> <button type="submit"  class="btn btn-sm btn-outline-primary">Post</button></p>
 </form>

@@ -15,8 +15,6 @@
         <% if classwork.work_type == 'assignment' %>
           <p class="d"><%= classwork.body %></p>
           <a class='nav-link' role='button' href='/assignment/<%=classwork.id%>/submissions'>View Submissions</a>
-        <% else %>
-          <p class="d"><%= classwork.body %></p>
         <% end %>
         <hr/>
       </div>
@@ -25,5 +23,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Classwork', new_classwork_path %>

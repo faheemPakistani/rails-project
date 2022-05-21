@@ -1,29 +1,33 @@
-<%if !@posts.nil?%>
-<div class="d-flex justify-content-center">
+<%if !@posts.nil? %>
+
+<div id="main_div", class="d-flex justify-content-center">
 <div id="news" class="container-fluid mb-5 w-75 row justify-content-center">
   <% @posts.each do |post| %>
-  <div class="news-main-div row justify-content-center padding">
-    <div class="card m-3">
-      <div class="news-child-div">
+  <div class="news-main-div row justify-content-center padding ">
+    <div class="">
+      <div class="card m-3 news-child-div shadow p-3 mb-5 bg-white rounded">
         <div>
           <p class="ml-2"></p>
-          <h2 class="ml-2 w-100"><%= post.title%></h2>
-          <small class="mt-0 text-muted"><%= post.status%></small>
-          <p class="row w-50 ml-2"><%= post.body%></p>
+          <h2 class="mt-6 w-100 row justify-content-center"><%= post.title%></h2>
+          <small class="mt-0 text-muted row justify-content-center"><%= post.status%></small>
+          <hr class="m-5"/>
+          <h8 class="row justify-content-center m-2"><%= post.body%></h8>
           <hr class="m-5"/>
           <div class="row ml-2 w-25">
-            <span class="mr-5"><i class="story-icon far fa-comments"></i> <strong><%= post.comments.replies.count %> Comments</strong></span>
+
+
+            <span class="m-2 "><i class="story-icon far fa-heart"></i> <strong> <%= post.likes.count%> Likes </strong></span><span class="m-2"><i class="story-icon far fa-comments"></i> <strong><%= post.comments.replies.count %> Comments</strong></span>
              <% post.comments.replies.first(2).each do |c|%>
-              <span class="card m-2"> <%= c.body %></span>
+              <span class="m-3 mt-1 mb-1 card"> <%= c.body %></span>
              <%end%>
-              <hr class="m-1"/>
-            <span class="mt-2 mb-2"><i class="story-icon far fa-heart"></i> <strong> <%= post.likes.count%> Likes </strong></span>
           </div>
-          <div class="col">
-            <%= link_to 'Read', post%>
+
+
+          <div class="col m-2">
+            <%= link_to 'Read', post, :class => "btn btn-sm btn-outline-primary padding-left: 2.5em; padding-right: 2.5rem; " %>
             <% if current_user.id == post.user_id%>
-              <%= link_to "Edit", edit_post_path(post)%>
-              <%= link_to "Destroy", post, method: :delete, data: { confirm: 'Are you sure?' }%>
+              <%= link_to "Edit", edit_post_path(post), :class => "btn btn-sm btn-outline-primary padding-left: 2.5em; padding-right: 2.5rem;" %>
+              <%= link_to "Destroy", post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-sm btn-outline-primary padding-left: 2.5em; padding-right: 2.5rem;" %>
             <%end%>
           <div>
         </div>
@@ -36,4 +40,10 @@
 <div>
 <br>
 
-
+<style type="text/css">
+    #main_div  {
+        width: 100%;
+        background-color: #E0DEDE;
+        margin-top: -68px;
+    }
+</style>

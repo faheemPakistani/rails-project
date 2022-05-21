@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<h3>Assignments</h3>
-
 <table>
   <thead>
     <tr>
@@ -10,10 +8,13 @@
   </thead>
 
   <tbody>
+  <h3>Total Submissions: <%= @submissions.count %></h3>
   <% @submissions.each do |submission| %>
-    <div class='d-flex flex-row'>
-      <span class='nav-link btn' role='button'>Download<span>
-      <iframe src="<%= (url_for(submission.solution)) %>" />
+    <div class='d-flex flex-row card'>
+      <span>Submitted by: <%= submission.user.email %> </span>
+      <a target="_blank" rel="noopener noreferrer" href="<%= (url_for(submission.solution)) %>" 
+        class='nav-link btn' role='button'>View</a>
+      <iframe id='my_iframe' class='link' src="<%= (url_for(submission.solution)) %>" />
     </div>
   <% end %>
   </tbody>

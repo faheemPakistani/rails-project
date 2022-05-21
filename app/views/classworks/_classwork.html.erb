@@ -1,14 +1,16 @@
 <div class='d-flex flex-column w-100'>
   <p class="d"><%= classwork.body %></p>
   <% if classwork.work_type == 'assignment' %>
-
-  <%= form_with model: [classwork, classwork.submissions.build ] do |form| %>
-    <p>
-      <%= form.file_field :solution, class:"file" %>
-    </p>
-    <input type="hidden" name="submission[classwork_id]" value="<%= classwork.id %>"/>
-    <input type="hidden" name="submission[classroom_id]" value="<%= @classroom.id %>"/>
-    <%= form.submit "Submit" %>  
+    <p class="d">Due Date: <%=classwork&.expiry.to_s %></p>
+    <% if classwork.expiry.strftime('%a, %d %b %Y %H:%M:%S') > DateTime.now.strftime('%a, %d %b %Y %H:%M:%S')%>
+      <%= form_with model: [classwork, classwork.submissions.build ] do |form| %>
+        <p>
+          <%= form.file_field :solution, class:"file" %>
+        </p>
+        <input type="hidden" name="submission[classwork_id]" value="<%= classwork.id %>"/>
+        <input type="hidden" name="submission[classroom_id]" value="<%= @classroom.id %>"/>
+        <%= form.submit "Submit" %>
+      <% end %>
     <% end %>
   <% end %>
   <hr/>

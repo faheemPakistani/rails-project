@@ -5,11 +5,15 @@
     <%= form.radio_button :work_type, "material" %> Study Material<br />
     <%= form.radio_button :work_type, "assignment" %> Assignment<br />
   </div>
+  <p>
+      <%= form.label :select_expiry_date %><br>
+      <%= form.datetime_field :expiry%>
+  </p>
 
-    <p>
-      <%= form.label :body %><br>
-      <%= form.rich_text_area :body,  required: true%>
-    </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.rich_text_area :body,  required: true%>
+  </p>
 
   <div class="actions">
     <%= form.submit %>

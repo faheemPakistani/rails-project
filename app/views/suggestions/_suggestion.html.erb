@@ -1,6 +1,6 @@
 <%= javascript_pack_tag 'suggestions'%>
-<p><%= suggestion.body %></p>
-<small>by <%= suggestion.user.email%></small>
+<p><%= suggestion.body %>: SUGGESTED BY -> <%= suggestion.user.name%></p>
+
 <div class="d-flex col">
 <a class="m-2 reply-btn" href="#">reply</a>
 <div class="child-suggestions">
