@@ -20,24 +20,30 @@
         
           <!-- Email input -->
           <div class="form-outline mb-8">
-            <%= f.email_field :email,required: true, autofocus: true, autocomplete: "email", class: "form-control", id: "inputEmail"%>
-            <label class="form-label" for="form3Example3">Email address</label>
+          <label class="form-label" for="form3Example3">Email address</label>
+            <%= f.email_field :email,required: true, placeholder: "Enter Email", autofocus: true, autocomplete: "email", class: "form-control", id: "inputEmail"%>
           </div>
 
 
           <!-- Password input -->
 
           <div class="field form-outline mb-8">
-            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", id: "inputPassword" %>
-            <label class="form-label" for="form3Example4"><%= f.label :password %>
-            <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %></label>
+          <label class="form-label" for="form3Example4"><%= f.label :password %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %></label>
+          <%= f.password_field :password, placeholder: "Enter Password", autocomplete: "new-password", class: "form-control", id: "inputPassword" %>
           </div>
 
           <div class="field form-outline mb-8">
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "inputPassword"  %>
-            <label class="form-label" for="form3Example4"><%= f.label :password_confirmation %></label>
+          <label class="form-label" for="form3Example4"><%= f.label :password_confirmation %></label>
+          <%= f.password_field :password_confirmation, placeholder: "Confirm Password", autocomplete: "new-password", class: "form-control", id: "inputPassword"  %>
+          </div>
+
+          <div class="field">
+            <b>Role</b><br />
+            <%= f.radio_button :user_type, "teacher" %> Teacher<br />
+            <%= f.radio_button :user_type, "student" %> Student<br />
           </div>
 
           <div class="d-flex justify-content-between align-items-center">
