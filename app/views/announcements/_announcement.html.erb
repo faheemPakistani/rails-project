@@ -1,8 +1,10 @@
+<%= javascript_pack_tag 'suggestions'%>
+
 <div class='d-flex flex-column w-100'>
   <p class="d"><%= announcement.body %> by <%= announcement.user.name%></p>
 
   <div class='float-right'>
-    <a class="reply-btn" href="#">Reply</a>
+    <a class="reply-btn" href ="#">Reply</a>
 
     <div class="child-announcements">
       <%= render partial: 'announcements/child', locals: {classroom: announcement.classroom, parent: announcement} %>
@@ -13,42 +15,22 @@
     <%end%>
 
     <a href='#' class='view-btn'>Replies</a>
-  </div>
-
-  <div class="child">
-    <%= render announcement.announcements%>
-  </div>
-
-</div>
+    <div class="child">
+      <%= render announcement.announcements%>
+    </div>
+    </div>
+    
+    
+    </div>
 <hr />
 
 <script>
-  
 
-  $(".view-btn").click(function(e) {
-    e.preventDefault()
-    $(".child").toggle();
-  });
-
-  $('.view-btn').click(function() {
-    if ($.trim($(this).text()) == 'Replies') {
-      $(this).text('Hide Replies');
-    } else {
-      $(this).text('Replies');
-      }
-  });
-
-  $(".reply-btn").on("click",function(e){
-    e.preventDefault()
-    $(".child-announcements").toggle();
-  });
-
-  $('.reply-btn').click(function() {
-    if ($.trim($(this).text()) == 'Reply') {
-      $(this).text('Cancel');
-    } else {
-      $(this).text('Reply');
-      }
-  });
+  document.querySelectorAll('.view-btn').forEach((el)=>{
+    el.addEventListener('click', (ev) =>{
+        ev.preventDefault();
+        el.nextElementSibling.style ='display: block;'
+    })
+})
 
 </script>

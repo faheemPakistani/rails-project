@@ -2,7 +2,7 @@
   <p class="d"><%= classwork.body %></p>
   <% if classwork.work_type == 'assignment' %>
     <p class="d">Due Date: <%=classwork&.expiry.to_s %></p>
-    <% if classwork.expiry.strftime('%a, %d %b %Y %H:%M:%S') > DateTime.now.strftime('%a, %d %b %Y %H:%M:%S')%>
+    <% if classwork.expiry > (Time.zone.now + 5.hours)%>
       <%= form_with model: [classwork, classwork.submissions.build ] do |form| %>
         <p>
           <%= form.file_field :solution, class:"file" %>

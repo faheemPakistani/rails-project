@@ -35,10 +35,11 @@
 
 
     <h5 class="m-2">Comments</h5>
-    <div class="card mt-2">
 
-    <div class="m-2"><%= render @post.comments.replies, :class => "card" %></div>
+    <div class="card mt-2">
+      <div class="m-2"><%= render @post.comments.replies %></div>
     </div>
+
     <br>
     <%= render partial: 'comments/form', locals: {post: @post, parent: nil}%>
 

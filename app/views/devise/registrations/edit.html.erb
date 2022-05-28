@@ -18,8 +18,8 @@
 
           <!-- Email input -->
           <div class="form-outline mb-8">
+          <label class="form-label" for="form3Example3"><%= f.label :email %></label>
             <%= f.email_field :email,required: true, autofocus: true, autocomplete: "email", class: "form-control", id: "inputEmail" %>
-            <label class="form-label" for="form3Example3"><%= f.label :email %></label>
           </div>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -28,25 +28,25 @@
 
           <!-- Password input -->
           <div class="form-outline mb-8">
+          <% if @minimum_password_length %>
+          <label class="form-label" for="form3Example4"><%= f.label :password %></label>
+          <% end %>
             <%= f.password_field :password,required: true, autocomplete: "new-password", class: "form-control", id: "inputPassword"  %>
-            <% if @minimum_password_length %>
-            <label class="form-label" for="form3Example4"><%= f.label :password %></label>
-            <% end %>
           </div>
 
 
           <div class="form-outline mb-8">
+          <% if @minimum_password_length %>
+          <label class="form-label" for="form3Example4"><%= f.label :password_confirmation %></label>
+          <% end %>
             <%= f.password_field :password_confirmation,required: true, autocomplete: "new-password", class: "form-control", id: "inputPassword"  %>
-            <% if @minimum_password_length %>
-            <label class="form-label" for="form3Example4"><%= f.label :password_confirmation %></label>
-            <% end %>
           </div>
 
           <div class="form-outline mb-8">
+          <% if @minimum_password_length %>
+          <label class="form-label" for="form3Example4"><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></label>
+          <% end %>
             <%= f.password_field :current_password,required: true, autocomplete: "current-password", class: "form-control", id: "inputPassword"  %>
-            <% if @minimum_password_length %>
-            <label class="form-label" for="form3Example4"><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></label>
-            <% end %>
           </div>
 
 
