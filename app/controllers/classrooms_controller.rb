@@ -14,9 +14,9 @@ class ClassroomsController < ApplicationController
   # GET /classrooms/1 or /classrooms/1.json
   def show
     @classroom = Classroom.find_by(id: params[:id])
-    @classwork = Classwork.where(classroom_id: @classroom.id)
+    @classwork = Classwork.where(classroom_id: @classroom.id).order(id: :desc)
     @people = Userclass.where(classroom_id: @classroom.id) || []
-    @users = User.find(@people.to_ary.map { |string| string.classroom_id })
+    @users = User.find(@people&.to_ary&.map { |string| string.user_id }) || []
     @teacher = User.find_by(id: @classroom.user_id) || ''
     if @classroom.nil?
       flash[:message] = @classroom.errors.full_messages.to_sentence

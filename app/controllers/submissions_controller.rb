@@ -23,16 +23,22 @@ class SubmissionsController < ApplicationController
   def create
     @classwork = Classwork.find(params[:submission][:classwork_id])
     flash[:message] = @classwork.errors.full_messages.to_sentence if @classwork.nil?
-    @submission = @classwork.submissions.create(submission_params.merge(user_id: current_user.id))
-    respond_to do |format|
-      if @submission.save
-        format.html { redirect_to classrooms_path, notice: "Submission was successfully created." }
-        format.json { render :show, status: :created, location: @submission }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @submission.errors, status: :unprocessable_entity }
+byebug
+    if @classwork.expiry > (Time.zone.now + 5.hours)
+      format.html { redirect_to classwork_url(@classwork), notice: "This Assignment has been expired" }
+    else
+      @submission = @classwork.submissions.create(submission_params.merge(user_id: current_user.id))
+      respond_to do |format|
+        if @submission.save
+          format.html { redirect_to classrooms_path, notice: "Submission was successfully created." }
+          format.json { render :show, status: :created, location: @submission }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @submission.errors, status: :unprocessable_entity }
+        end
       end
     end
+
   end
 
   # PATCH/PUT /submissions/1 or /submissions/1.json
