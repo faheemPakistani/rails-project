@@ -1,20 +1,40 @@
+<div class="new_classroom mb-5">
+  <h3>Suggestions</h3>
+</div>
 <div class="container">
-<h1>Suggestions</h1>
 
 <%if !@suggestion.nil?%>
-  <% @suggestion.each do |sugg| %>
-<div id="news" class="container-fluid mb-3">
-  <div class="news-main-div row justify-content-center padding">
-    <div class="card padding column justify-content-center pt-3">
-      <div >
-        <div>
-          <p ><%= truncate(sugg.body.to_s, length: 100)%><br><br><a class= "btn btn-sm btn-outline-primary padding-left: 2.5em; padding-right: 2.5rem;" href="/posts/<%=sugg.post_id%>">Show post</a></p>
-        </div>
+  <div class="news-main-div d-flex flex-row justify-content-center">
+    <% @suggestion.each do |sugg| %>
+      <div class="card rounded-top col-sm-4 text-center m-3">
+          <div class="card-header text-white" style='background-image: url("https://gstatic.com/classroom/themes/Honors.jpg");'>
+            Your Suggestion
+          </div>
+          <div class='card-body'>
+            <p ><%= truncate(sugg.body.to_s, length: 100)%></p>
+          </div>
+          <div class='card-footer'>
+            <a class= "btn btn-sm btn-outline-primary" href="/posts/<%=sugg.post_id%>">Show post</a>
+          </div>
       </div>
-    </div>
-  </div>
-</div>
     <% end %>
+  </div>
 <%end%>
 <br>
 </div>
+
+
+<style type="text/css">
+
+  .card:hover {
+    box-shadow: 2px 2px 2px black;
+    transform:scale(1);
+  }
+
+  .card {
+    height: 250px;
+    transition:.3s;
+    margin: 3rem;
+  }
+
+</style>

@@ -25,12 +25,11 @@
   </ul>
 
   <p class='mt-5'>
-  <%= form.label :body %><br>
     <%= form.rich_text_area :body,  required: true%>
   </p>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => "btn btn-primary mb-2 classroom_read_button" %>
   </div>
 <% end %>
 

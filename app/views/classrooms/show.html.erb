@@ -22,7 +22,7 @@
   <div class="w-75 news-main-div row justify-content-center padding m-auto">
     <div class="m-3">
       <div class="card news-child-div bg-image text-white" style="
-      background-image: url('https://mdbcdn.b-cdn.net/img/new/fluid/nature/015.webp');
+      background-image: url('https://gstatic.com/classroom/themes/img_read.jpg');
     ">
         <div>
           <p class="ml-2"></p>
@@ -32,7 +32,7 @@
                 <%if @classroom.avatar.attached?%>
                   <img class="classroom_avatar" src="<%= (url_for(@classroom.avatar)) %>"
                 <%end%>
-                <h6 class="ml-2 classroom_title"><%= @classroom.title%> </h6>
+                <h3 class="ml-2 classroom_title"><%= @classroom.title%> </h3>
             </div>
           </div>
           <h6 class="classroom_description"><%= @classroom.description%></h6>
@@ -50,7 +50,13 @@
   </div>
 
   <div class='announcement_hide'>
-    <h4>Start Discussion:</h4>
+
+    <ul class='nav justify-content-center'>
+      <li class='nav-item m-3'>
+        <h4 class='nav-link'>Start Discussion:</h4>
+      </li>
+    </ul>
+  
     <div><%= render partial: 'announcements/form', locals: {classroom: @classroom, parent: nil}%></div>
       <div class="w-100">
         <h4 class="mt-5">Class Discussion</h4>
@@ -64,15 +70,16 @@
     <%end%>
 
     <div class="w-100">
-      <h4 class="mt-5"></h4>
-      <%= render @classroom.classworks %>
+      <h4 class="mt-5">Class Work</h4>
+        <%= render @classroom.classworks %>
       </div>
   </div>
 
-  <div class='people_hide'>
+  <div class='people_hide m-4'>
+
     <h4>Teacher</h4>
     <%= @teacher&.email %>
-    <h4>Enrolled Students:</h4>
+    <h4 class='mt-3'>Enrolled Students:</h4>
     <% @users.each do |user| %>
       <%= user.email %>
     <%end%>

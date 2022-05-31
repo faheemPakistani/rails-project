@@ -10,8 +10,8 @@
 }
 
 .classroom_avatar {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     margin-right: 20px;
     margin-left: 20px;
@@ -26,9 +26,22 @@
     float: right;
     margin-right: 20px;
     margin-bottom: 20px;
+    min-width: 140px;
+    height: 40px;
+}
+
+.classroom_read_btn {
+    float: right;
+    margin-right: 15px;
     width: 140px;
     height: 40px;
 }
+.classroom_read {
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-top: 70px;
+}
+
 .classroom_read_btn {
     margin-right: 20px;
     margin-bottom: 20px;
@@ -69,7 +82,7 @@
 }
 
 .news-child-div{
-    min-height: 300px;
+    min-height: 250px;
 }
 
 .announcement_hide{

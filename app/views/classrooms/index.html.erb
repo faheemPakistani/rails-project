@@ -1,4 +1,6 @@
-<h1>Classrooms</h1>
+<div class="new_classroom mb-5">
+  <h3>Classrooms</h3>
+</div>
 
 <table>
   <thead>
@@ -8,30 +10,46 @@
   </thead>
 
   <tbody>
-  <div class="news-main-div row">
+  <%if !@classrooms.nil?%>
+  <div class="news-main-div d-flex flex-row justify-content-center">
     <% @classrooms.each do |classroom| %>
-        <div class="card col-sm-4 news-child-div m-1">
+        <div class="card rounded-top col-sm-4 news-hild-div m-2">
           <div>
-            <p class="ml-2"></p>
 
-            <div class="classroom_header">
-              <div>
+            <div class="classroom_header" style='background-image: url("https://gstatic.com/classroom/themes/Honors.jpg");'>
+              <div class='m-3 text-white'>
                 <%if classroom.avatar.attached?%>
                   <img class="classroom_avatar" src="<%= (url_for(classroom.avatar)) %>"
                 <%end%>
 
-                <h6 class="ml-2 classroom_title"><%= classroom.title%> </h6>
+                <h6 class="ml-2 text-white"><%= classroom.title%> </h6>
               </div>
             </div>
-
             <h6 class="classroom_description"><%= classroom.description%></h6>
-              <%= button_to 'Open', classroom, :class => "classroom_read_button btn btn-primary", :method => :get%>
-              
+            <hr class="classroom_read"/>
+              <%= button_to 'Open', classroom, :class => "classroom_read_btn btn btn-primary", :method => :get%>
+
         </div>
         </div>
       <% end %>
       </div>
+  <%end%>
   </tbody>
 </table>
 
 <br>
+
+<style type="text/css">
+
+  .card:hover {
+    box-shadow: 1px 1px 1px black;
+    transform:scale(1);
+  }
+
+  .card {
+  border:1px solid black;
+  transition:.3s;
+  margin: 3rem;
+  }
+
+</style>

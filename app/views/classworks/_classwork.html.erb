@@ -1,4 +1,6 @@
-<div class='d-flex flex-column w-100 card p-3 mb-3'>
+
+<% if !classwork.nil? %>
+<div class='d-flex flex-column w-100 card p-1 mb-3'>
 <div class='m-2'>
   <p class="d"><%= classwork.body %></p>
   <% if classwork.work_type == 'assignment' %>
@@ -16,3 +18,5 @@
   <% end %>
   </div>
 </div>
+<%end%>
+<hr />
