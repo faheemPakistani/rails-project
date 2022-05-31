@@ -1,4 +1,5 @@
-<div class='d-flex flex-column w-100'>
+<div class='d-flex flex-column w-100 card p-3 mb-3'>
+<div class='m-2'>
   <p class="d"><%= classwork.body %></p>
   <% if classwork.work_type == 'assignment' %>
     <p class="d">Due Date: <%=classwork&.expiry.to_s %></p>
@@ -13,5 +14,5 @@
       <% end %>
     <% end %>
   <% end %>
-  <hr/>
+  </div>
 </div>

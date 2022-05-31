@@ -1,18 +1,38 @@
-<%if current_user.role == 'moderator'%>
-  <% if @post.status == 'inactive'%>
-    <button><a href="/status/<%=@post.id%>">Publish</a></button>
-  <% else %>
-    <button><a href="/status/<%=@post.id%>">Unpublish</a> </button>
-  <% end %>
-  <button><%= link_to "Destroy", @post, method: :delete, data: { confirm: 'Are you sure?' }%> </button>
+
+
+<%if current_user.role == 'moderator' || current_user.role == 'teacher'%>
+
+<ul class="nav justify-content-center mb-3">
+  <li class="nav-item">
+    <span class="nav-link active" role="button">
+    <% if @post.status == 'inactive'%>
+      <a href="/status/<%=@post.id%>">Publish</a>
+      <% else %>
+    <a href="/status/<%=@post.id%>">Unpublish</a> 
+    <%end%>
+    </span>
+  </li>
+  <li class="nav-item">
+    <span class="nav-link blog" role="button">Blog</span>
+  </li>
+  <li class="nav-item">
+    <span class="nav-link suggestion" role="button">Suggestions</span>
+  </li>
+
+
+</ul>
+
+
+ 
+
 <% end %>
 
-<%= link_to 'Back', posts_path, :class => "btn btn-sm btn-outline-primary mb-2" %>
+
+
 
 <div class=" news-main-div row justify-content-center">
 
-  <div class="card w-50 ">
-
+  <div class="card blogs">
 
     <div class="news-main-div row justify-content-center padding ">
       <div class="">
@@ -35,19 +55,19 @@
 
 
     <h5 class="m-2">Comments</h5>
-
     <div class="card mt-2">
       <div class="m-2"><%= render @post.comments.replies %></div>
     </div>
-
     <br>
-    <%= render partial: 'comments/form', locals: {post: @post, parent: nil}%>
 
+    <div class='d-flex justify-content-center'>
+      <%= render partial: 'comments/form', locals: {post: @post, parent: nil}%>
+    </div>
 
   </div>
 
 
-  <div class="card w-50">
+  <div class="card w-75 suggestions">
     <h5 class="m-2">Suggestions</h5>
     <div class="card mt-2">
     <div class="m-2"><%= render @post.suggestions.post_suggestions, :class => "card"%></div>
@@ -55,3 +75,19 @@
     <div class="m-2"><%= render partial: 'suggestions/child', locals: {post: @post, parent: nil}%></div>
   </div>
 </div>
+
+<script>
+$('.blog').on('click',function(e){
+  e.preventDefault()
+  $('.suggestions').hide();
+  $('.blogs').show();
+
+});
+
+$('.suggestion').on('click',function(e){
+  e.preventDefault()
+  $('.blogs').hide();
+  $('.suggestions').show();
+});
+
+</script>

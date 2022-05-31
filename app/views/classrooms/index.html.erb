@@ -8,10 +8,9 @@
   </thead>
 
   <tbody>
+  <div class="news-main-div row">
     <% @classrooms.each do |classroom| %>
-      <div class="news-main-div row justify-content-center padding">
-        <div class=" m-3">
-        <div class="card news-child-div">
+        <div class="card col-sm-4 news-child-div m-1">
           <div>
             <p class="ml-2"></p>
 
@@ -26,18 +25,12 @@
             </div>
 
             <h6 class="classroom_description"><%= classroom.description%></h6>
-              <%= button_to 'Open', classroom, :class => "classroom_read_button", :method => :get%>
-            <div class="col">
-              <% if current_user.id == classroom.user_id%>
-                <%= link_to "Edit", edit_classroom_path(classroom)%>
-                <%= link_to "Delete", classroom, method: :delete, data: { confirm: 'Are you sure?' }%>
-              <%end%>
-            <div>
-          </div>
+              <%= button_to 'Open', classroom, :class => "classroom_read_button btn btn-primary", :method => :get%>
+              
         </div>
+        </div>
+      <% end %>
       </div>
-    </div>
-    <% end %>
   </tbody>
 </table>
 

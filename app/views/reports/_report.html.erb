@@ -1,5 +1,5 @@
-<div class='d-flex' id="<%=reportable.id%>-report">
-  <%= reportable.reports.count%>
+<div class='d-flex m-2' id="<%=reportable.id%>-report">
+  <p class='m-1'> <%= reportable.reports.count%> </p>
   <% report = current_user.reports.find_by(reportable: reportable) %>
   <% if report.nil?%>
     <form action="/reports" data-remote=true method="post">

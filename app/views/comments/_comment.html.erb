@@ -1,34 +1,32 @@
 <%= javascript_pack_tag 'suggestions'%>
+<div class='d-flex'>
 
-<p><%= comment.body %> by <%= comment.user.name%></p>
+  <div>
+    <p><%= comment.body %> by <%= comment.user.name%></p>
+  </div>
 
+  <div class="d-flex flex-row justify-content-center m-3">
+  <p class="d-flex flex-row justify-content-center"><span class='m-2'><%= render partial: 'likes/like', locals: {likeable: comment}%></span> <span class='ml-2'> <%= render partial: 'reports/report', locals: {reportable: comment} %></span></p>
+  </div>
+  </div>
+  
+  <div class='d-flex'>
+    <a class="reply-btn" href="#">Reply</a>
+    <div class="child-comments">
+      <%= render partial: 'comments/child', locals: {post: comment.post, parent: comment} %>
+    </div>
 
-<a class="reply-btn" href="#">reply</a>
-<div class="child-comments">
-  <%= render partial: 'comments/child', locals: {post: comment.post, parent: comment} %>
-</div>
-
-<% if current_user.id == comment.user_id%>
-  <%= link_to 'Edit', edit_post_comment_path(@post, comment)%>
-<%end%>
-
-<br><br>
-
-<div class="d-flex flex-row">
-  <p class="d-flex flex-row justify-content-center"><span class='ml-2'><%= render partial: 'likes/like', locals: {likeable: comment}%></span> <span class='ml-2'> <%= render partial: 'reports/report', locals: {reportable: comment} %></span></p>
-</div>
-
-<a class='view-btn' href='#'>Replies</a>
-<div class="child">
-<%= render comment.comments%>
-</div>
+    <a class='view-btn' href='#'>Replies</a>
+    <div class="child">
+      <%= render comment.comments%>
+    </div>
+  </div>
 <hr/>
 
 <script>
 
   document.querySelectorAll('.view-btn').forEach((el)=>{
     el.addEventListener('click', (ev) =>{
-      console.log("sdfds")
       ev.preventDefault();
       el.nextElementSibling.style ='display: block;'
     })

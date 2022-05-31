@@ -1,17 +1,31 @@
 <%= form_with model: [classroom, classroom.classworks.build ] do |form| %>
 
-  <div class="field">
-    <b>Work Type</b><br />
-    <%= form.radio_button :work_type, "material" %> Study Material<br />
-    <%= form.radio_button :work_type, "assignment" %> Assignment<br />
-  </div>
-  <p>
-      <%= form.label :select_expiry_date %><br>
-      <%= form.datetime_field :expiry%>
-  </p>
+<ul class="nav justify-content-center">
+  <li class="nav-item m-3">
+    <span class="nav-link" role="button">Work Type</span>
+  </li>
+</ul>
 
-  <p>
-    <%= form.label :body %><br>
+  <ul class="nav justify-content-center">
+  <li class="nav-item m-3">
+    <%= form.radio_button :work_type, "material", :checked => true, class: 'selected'%> Study Material<br />
+  </li>
+  <li class="nav-item">
+  </li>
+  <li class="nav-item m-3">
+    <%= form.radio_button :work_type, "assignment",class: 'selected' %> Assignment<br />
+  </li>
+</ul>
+
+<ul class="nav justify-content-center">
+  <p class='showw'>
+      <%= form.label :select_expiry_date %><br>
+      <%= form.datetime_field :expiry, :value => DateTime.now%>
+  </p>
+  </ul>
+
+  <p class='mt-5'>
+  <%= form.label :body %><br>
     <%= form.rich_text_area :body,  required: true%>
   </p>
 
@@ -19,3 +33,19 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<script>
+  if( $('.selected').is(':checked') ){
+    $(".showw").hide()
+  }
+
+  $('input[type=radio][class=selected]').change(function() {
+    if (this.value == 'material') {
+      $(".showw").hide()
+    }
+    else if (this.value == 'assignment') {
+      $(".showw").show()
+    }
+});
+
+</script>

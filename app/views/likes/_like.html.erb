@@ -1,5 +1,5 @@
-<div class="d-flex flex justify-content-center" id="<%=likeable.id%>-like">
-  <%= likeable.likes.count%>
+<div class="d-flex flex justify-content-center m-2" id="<%=likeable.id%>-like">
+  <p class='m-1'><%= likeable.likes.count%></p>
   <% like = current_user.likes.find_by(likeable: likeable) %>
   <% if like.nil?%>
     <form action="/likes" data-remote=true method="post">

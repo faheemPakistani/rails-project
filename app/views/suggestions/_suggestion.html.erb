@@ -2,7 +2,7 @@
 <p><%= suggestion.body %>: SUGGESTED BY -> <%= suggestion.user.name%></p>
 
 <div class="d-flex col">
-<a class="m-2 reply-btn" href="#">reply</a>
+<a class="m-2 reply-btn" href="#">Reply</a>
 <div class="child-suggestions">
     <%= render partial: 'suggestions/child', locals: {post: suggestion.post, parent: suggestion} %>
 </div>
@@ -13,7 +13,20 @@
   <%= link_to "Reject", post_suggestion_path(@post, suggestion), class: 'm-2', method: :delete, data: { confirm: 'Are you sure?' }%>
 <%end%>
 </div>
-<hr/>
+<a href='#' class='view-btn'>Replies</a>
 <div class="child">
 <%= render suggestion.suggestions%>
 </div>
+<hr/>
+
+
+<script>
+
+  document.querySelectorAll('.view-btn').forEach((el)=>{
+    el.addEventListener('click', (ev) =>{
+        ev.preventDefault();
+        el.nextElementSibling.style ='display: block;'
+    })
+})
+
+</script>
