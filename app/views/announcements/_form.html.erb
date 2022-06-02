@@ -1,6 +1,5 @@
 <%= form_with model: [classroom, classroom.announcements.build ] do |form| %>
-  <p>
-      <%= form.label :body %><br>
+  <p class='bg-white p-3 card shadow-lg mb-5 bg-white rounded'>
       <%= form.rich_text_area :body,  required: true%>
   </p>
   <p>

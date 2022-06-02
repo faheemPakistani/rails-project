@@ -1,5 +1,6 @@
-
-<h1>Classworks</h1>
+<div class='new_classroom'>
+  <h2>Classworks</h2>
+</div>
 
 <table>
   <thead>
@@ -9,15 +10,37 @@
   </thead>
 
   <tbody>
+  <div class="news-main-div d-flex flex-row justify-content-center">
     <% @classworks.each do |classwork| %>
       <% if classwork.work_type == 'assignment' %>
-        <div class='w-100 d-flex flex-column card m-3 p-3'>
-            <p class="d"><%= classwork.body %></p>
-            <a class='nav-link' style='float: right;' role='button' href='/assignment/<%=classwork.id%>/submissions'>View Submissions</a>
+      <div class="card rounded-top col-sm-4 text-center m-3">
+        <div class='card-header text-white' style='background-image: url("https://gstatic.com/classroom/themes/Honors.jpg");'>
+          Assignment Description:
         </div>
+        <div class='card-body'>
+          <p><%= classwork.body %></p>
+        </div>
+        <div class='card-footer text-white'>
+          <a class='nav-link btn btn-primary text-white' href='/assignment/<%=classwork.id%>/submissions'>View Submissions</a>
+        </div>
+      </div>
       <% end %>
     <% end %>
   </tbody>
 </table>
 
 <br>
+<style type="text/css">
+
+  .card:hover {
+    box-shadow: 1px 1px 1px black;
+    transform:scale(1);
+  }
+
+  .card {
+    height: 350px;
+  transition:.5s;
+  margin: 3rem;
+  }
+
+</style>

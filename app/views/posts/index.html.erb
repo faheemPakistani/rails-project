@@ -23,11 +23,11 @@
           </div>
 
 
-          <div class="col m-2">
-            <%= link_to 'Read', post, :class => "btn btn-sm btn-outline-primary padding-left: 2.5em; padding-right: 2.5rem; " %>
+          <div class="new_classroom_buttons ">
+            <%= link_to 'Read', post, :class => "btn btn-sm btn-outline-primary m-2" %>
             <% if current_user.id == post.user_id%>
-              <%= link_to "Edit", edit_post_path(post), :class => "btn btn-sm btn-outline-primary padding-left: 2.5em; padding-right: 2.5rem;" %>
-              <%= link_to "Destroy", post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-sm btn-outline-primary padding-left: 2.5em; padding-right: 2.5rem;" %>
+              <%= link_to "Edit", edit_post_path(post), :class => "btn btn-sm btn-outline-primary m-2" %>
+              <%= link_to "Destroy", post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-sm btn-outline-primary m-2" %>
             <%end%>
           <div>
         </div>

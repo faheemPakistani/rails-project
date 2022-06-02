@@ -10,10 +10,6 @@
       <%= render partial: 'announcements/child', locals: {classroom: announcement.classroom, parent: announcement} %>
     </div>
 
-    <% if current_user.id == announcement.user_id%>
-      <%= link_to 'Edit', edit_classroom_announcement_path(@classroom, announcement)%>
-    <%end%>
-
     <a href='#' class='view-btn'>Replies</a>
     <div class="child">
       <%= render announcement.announcements%>

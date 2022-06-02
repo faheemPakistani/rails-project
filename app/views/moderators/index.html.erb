@@ -1,45 +1,83 @@
 
 <ul class='nav justify-content-center'>
     <li class='nav-item'>
-        <span class='nav-link reported'>Reported Posts</span>
+        <span class='nav-link reported' role='button'>Reported Posts</span>
     </li>
     <li class='nav-item'>
-        <span class='nav-link inactive'>Inactive Posts</span>
+        <span class='nav-link inactive' role='button'>Inactive Posts</span>
     </li>
 </ul>
 
-<div class="container w-100 justify-content-around row">
-   <div class="m-2 card w-25">
-        <h3>Reported Posts</h3>
-        <% @reported.each do |report| %>
-
-
-        <div class="card-body">
-        
-        <div class="card">
-        <div class="card-body">
-        <strong>Total Report: <%=report.reports.count%></strong>
-        <p><a href="/posts/<%=report.id%>">View post</a></p>
+<div class='news-main-div d-flex flex-row justify-content-center reported_hide'>
+    <% @reported.each do |report| %>
+        <div class="card rounded-top col-sm-4 text-center m-3 reported_hide"> 
+           <div class='card-header text-white' style='background-image: url("https://gstatic.com/classroom/themes/Honors.jpg");'>
+               <%=Post.find(report.id).title%>
+           </div>
+            <div class="card-body">
+                <strong>Total Report: <%=report.reports.count%></strong>
+            </div>
+            <div class='card-footer'>
+                <p><a class='btn btn-sm btn-outline-primary' href="/posts/<%=report.id%>">View post</a></p>
+            </div>
         </div>
-        </div>
-        
-        </div>
-        <% end %>
-  </div>
-
-  <div class="m-2 card w-25">
-    <h3>Inactive Posts</h3>
-    <% @posts.each do |post| %>
-    <% if post.status == 'inactive'%>
-    <div class="card-body">
-    <div class="card">
-    <div class="card-body">
-    <strong>Post Status: <%=post.status%></strong>
-    <p><a href="/posts/<%=post.id%>">View post</a></p>
-    </div>
-    </div>
-    </div>
-    <%end%>
-    <%end%>
-  </div>
+    <% end %>
 </div>
+
+<div class='news-main-div d-flex flex-row justify-content-center'>
+    <% @posts.each do |post| %>
+        <% if post.status == 'inactive'%>
+        <div class="card rounded-top col-sm-4 text-center inactive_hide"> 
+            <div class="card-header text-white" style='background-image: url("https://gstatic.com/classroom/themes/Honors.jpg");'>
+                <%= post.title %>
+            </div>
+            <div class="card-body">
+                <strong>Post Status: <%=post.status%></strong>
+            </div>
+            <div class='card-footer'>
+                <p><a class='btn btn-sm btn-outline-primary' href="/posts/<%=post.id%>">View post</a></p>
+            </div>
+        </div>
+        <%end%>
+    <%end%>
+</div>
+
+
+<script>
+
+  $('.reported').on('click',function(e){
+    e.preventDefault()
+    $('.inactive_hide').hide();
+    $('.reported_hide').show();
+
+  });
+
+  $('.inactive').on('click',function(e){
+    e.preventDefault()
+    $('.reported_hide').hide();
+    $('.inactive_hide').show();
+  });
+
+
+</script>
+
+
+
+<style type="text/css">
+
+  .card:hover {
+    box-shadow: 2px 2px 2px black;
+    transform:scale(1);
+  }
+
+  .card {
+    min-height: 250px;
+    transition:.3s;
+    margin: 3rem;
+  }
+
+  .inactive_hide {
+      display: none;
+  }
+
+</style>

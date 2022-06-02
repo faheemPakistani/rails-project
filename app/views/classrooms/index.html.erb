@@ -14,22 +14,20 @@
   <div class="news-main-div d-flex flex-row justify-content-center">
     <% @classrooms.each do |classroom| %>
         <div class="card rounded-top col-sm-4 news-hild-div m-2">
-          <div>
-
-            <div class="classroom_header" style='background-image: url("https://gstatic.com/classroom/themes/Honors.jpg");'>
-              <div class='m-3 text-white'>
+            <div class="card-header" style='background-image: url("https://gstatic.com/classroom/themes/Honors.jpg");'>
+              <div class=' text-white'>
                 <%if classroom.avatar.attached?%>
                   <img class="classroom_avatar" src="<%= (url_for(classroom.avatar)) %>"
                 <%end%>
-
                 <h6 class="ml-2 text-white"><%= classroom.title%> </h6>
               </div>
             </div>
-            <h6 class="classroom_description"><%= classroom.description%></h6>
-            <hr class="classroom_read"/>
+            <div class='card-body'>
+              <h6 class="classroom_description"><%= classroom.description%></h6>
+            </div>
+            <div class='card-footer d-flex flex-row justify-content-center'>
               <%= button_to 'Open', classroom, :class => "classroom_read_btn btn btn-primary", :method => :get%>
-
-        </div>
+            </div>
         </div>
       <% end %>
       </div>
@@ -47,8 +45,8 @@
   }
 
   .card {
-  border:1px solid black;
-  transition:.3s;
+    height: 350px;
+  transition:.5s;
   margin: 3rem;
   }
 

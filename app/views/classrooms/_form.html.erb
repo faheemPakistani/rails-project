@@ -11,32 +11,54 @@
     </div>
   <% end %>
 
-  <div class="classroom_form">
-    <div class="card p-5 mt-5">
-      <div class="field classroom_field">
-        <span class="label_text"> <%= form.label :title %> </span> <br />
-        <%= form.text_field :title, required: true, :size=>"46", placeholder: "Enter Title" %>
+  <div class="d-flex flex-row justify-content-center">
+    <div class="mt-5 card shadow-lg mb-5 bg-white rounded">
+      <div class="card-header new_classroom text-white" style='background-image: url("https://gstatic.com/classroom/themes/Honors.jpg");'>
+         <h4>Create Classroom</h4>
       </div>
-
-      <div class="field mt-4">
-        <span class="label_text"> <%= form.label :description %> </span> <br />
-        <%= form.text_area :description, required: true, :size=>"50", placeholder: "Enter Description"%>
-      </div>
-
-      <div class="image-preview">
+      <div class='card-body new_classroom'>
+        <div>
+          <span class="label_text"> <%= form.label :title %> </span> <br />
+          <%= form.text_field :title, required: true, :size=>"46", placeholder: "Enter Title" %>
+        </div>
         <div class="field mt-4">
-          <span class="label_text"> <%= form.label "Profile Picture" %> </span> <br />
-          <%= form.file_field :avatar, class:"file" %>
+          <span class="label_text"> <%= form.label :description %> </span> <br />
+          <%= form.text_area :description, required: true, :size=>"50", placeholder: "Enter Description"%>
         </div>
-        <div class="upload-preview">
-          <img />
+
+        <div class="image-preview">
+          <div class="field mt-4">
+            <span class="label_text"> <%= form.label "Profile Picture" %> </span> <br />
+            <%= form.file_field :avatar, class:"file" %>
+          </div>
+          <div class="upload-preview">
+            <img />
+          </div>
         </div>
       </div>
-      <div class="actions new_classroom mt-5">
-        <%= form.submit %>
+      <div class='card-footer'>
+        <div class="actions new_classroom">
+          <%= form.submit :class => 'btn btn-primary' %>
+        </div>
       </div>
     </div>
 
   </div>
 
 <% end %>
+
+
+<style type="text/css">
+
+  .card:hover {
+    box-shadow: 2px 2px 2px black;
+    transform:scale(1);
+  }
+
+  .card {
+    min-height: 450px;
+    transition:.3s;
+    margin: 3rem;
+  }
+
+</style>

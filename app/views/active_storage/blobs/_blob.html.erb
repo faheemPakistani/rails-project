@@ -1,8 +1,8 @@
 <figure class="d-flex attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.representable? %>
     <div class='d-flex flex-row'>
-      <div class='m-2 w-50%'> <a class='nav-link' href='<%= blob.service_url%>'> <%=  blob.filename %> <a/></div>
-      <a class='nav nav-link btn btn-primary text-white' target="_blank" rel="noopener noreferrer" href='<%= blob.service_url%>'>View </a>
+      <div class='w-50%'> <a class='nav-link' href='<%= blob.service_url%>'> <%=  blob.filename %> <a/></div>
+      <a class='nav nav-link btn btn-sm btn-outline-primary' target="_blank" rel="noopener noreferrer" href='<%= blob.service_url%>'>View </a>
     </div>
 
   <% end %>

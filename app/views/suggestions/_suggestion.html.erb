@@ -6,9 +6,7 @@
 <div class="child-suggestions">
     <%= render partial: 'suggestions/child', locals: {post: suggestion.post, parent: suggestion} %>
 </div>
-<% if current_user.id == suggestion.user_id || @post.user_id == current_user.id%>
-  <%= link_to 'Edit', edit_post_suggestion_path(@post, suggestion), class: 'm-2'%>
-<%end%>
+
 <% if @post.user_id == current_user.id%>
   <%= link_to "Reject", post_suggestion_path(@post, suggestion), class: 'm-2', method: :delete, data: { confirm: 'Are you sure?' }%>
 <%end%>

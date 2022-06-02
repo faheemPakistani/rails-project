@@ -42,17 +42,18 @@
     margin-top: 70px;
 }
 
-.classroom_read_btn {
-    margin-right: 20px;
-    margin-bottom: 20px;
-    width: 140px;
-    height: 40px;
-}
 
 .new_classroom {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.new_classroom_buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .new_classroom_button {
@@ -94,5 +95,9 @@
 // }
 
 .people_hide{
+    display: none;
+}
+
+.inactive_hide {
     display: none;
 }
