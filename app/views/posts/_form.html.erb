@@ -1,26 +1,65 @@
-<%= form_with(model: post, local: true, validate: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<div id="main_div" class="d-flex justify-content-center">
+  <div id="news" class="container-fluid mb-5 w-100 row justify-content-center">
+    <div class="news-main-div row justify-content-center padding ">
+      <div class="">
+        <div class="card m-3 news-child-div shadow mb-5 bg-white rounded">
+          <div class='card-header d-flex flex-row justify-content-center'> 
+            <h4>New Post</h4>
+          </div>
+          <div class='card-body'>
+            <%= form_with(model: post, local: true, validate: true) do |form| %>
+              <% if post.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul>
-      <% post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+                  <ul>
+                  <% post.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
 
-  <div class="field">
-    <br><br>
-    <h5 class="mt-6"><%= form.label :title %><span>  </span><%= form.text_field :title, required: true %></h5>
-  </div>
-  <div class="field">
-    <br>
-    <h5 class="mt-6"><%= form.label :body %><span>  </span><%= form.rich_text_area :body, validate: { presence: true }, :class => "" %></h5>
-  </div>
+              <div class="field">
+                <br><br>
+                <h5 class="mt-6"><span>  </span><%= form.text_field :title, placeholder: 'Enter post title...', required: true, :class => 'title' %></h5>
+              </div>
+              <div class="field">
+                <br>
+                <h5 class="mt-4"><span>  </span><%= form.rich_text_area :body, placeholder: 'Start discussion...', validate: { presence: true }, :class => "body" %></h5>
+              </div>
 
-  <div>
-    <%= form.submit "Submit", :class => "btn btn-sm btn-outline-primary padding-left: 2.5em; padding-right: 2.5rem;" %>
+              </div>
+              <div class='card-footer d-flex flex-row justify-content-center'>
+              <div>
+                <%= form.submit "Create Blog", :class => "btn btn-primary" %>
+              </div>
+              </div>
+            <% end %>
+        </div>  
+     </div>
+    </div>  
   </div>
-<% end %>
+</div>
+
+<style type="text/css">
+
+  .card:hover {
+    box-shadow: 1px 1px 1px black;
+    transform:scale(1);
+  }
+
+  .card {
+    min-height: 550px;
+    transition:.3s;
+    margin: 3rem;
+  }
+
+  .body {
+    height: 400px;
+  }
+  .title {
+    height: 45px;
+    min-width: 43rem;
+  }
+</style>
