@@ -23,7 +23,7 @@ class SubmissionsController < ApplicationController
   def create
     @classwork = Classwork.find(params[:submission][:classwork_id])
     flash[:message] = @classwork.errors.full_messages.to_sentence if @classwork.nil?
-byebug
+    # byebug
     if @classwork.expiry > (Time.zone.now + 5.hours)
       format.html { redirect_to classwork_url(@classwork), notice: "This Assignment has been expired" }
     else

@@ -1,23 +1,37 @@
+<div class='new_classroom'>
+ <h3>Total Submissions: <%=@submissions.count%></h3>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <h3>Total Submissions: <%= @submissions.count %></h3>
+<div class="news-main-div d-flex flex-row justify-content-center">
   <% @submissions.each do |submission| %>
-    <div class='d-flex flex-row card'>
-      <span>Submitted by: <%= submission.user.email %> </span>
-      <a target="_blank" rel="noopener noreferrer" href="<%= (url_for(submission.solution)) %>" 
-        class='nav-link btn' role='button'>View</a>
-      <iframe id='my_iframe' class='link' src="<%= (url_for(submission.solution)) %>" />
+    <div class="card rounded-top col-sm-4 text-center m-3">
+      <div class='card-header'>
+        <span>Submitted by: <%= submission.user.name %> </span>
+      </div>
+      <div class='card-body'>
+        <p class='link'><%= submission.solution.filename %> </p>
+      </div>
+      <div class='card-footer'>
+        <a target="_blank" rel="noopener noreferrer" href="<%= (url_for(submission.solution)) %>" 
+          class='nav-link btn' role='button'>View</a>
+      </div>
     </div>
   <% end %>
-  </tbody>
-</table>
+</div>
 
 <br>
 
+<style type="text/css">
+
+  .card:hover {
+    box-shadow: 1px 1px 1px black;
+    transform:scale(1);
+  }
+
+  .card {
+    min-height: 250px;
+    min-width: 300px;
+    transition:.3s;
+    margin: 3rem;
+  }
+</style>

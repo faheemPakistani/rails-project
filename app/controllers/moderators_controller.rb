@@ -7,7 +7,9 @@ class ModeratorsController < ApplicationController
       @posts = Post.where(status: 'inactive')
       @reported = Post.joins(:reports)
     else
-      @posts = []
+      respond_to do |format|
+        format.html { redirect_to classrooms_path, notice: "Not Eligible, to get access please contact admin@gmail.com" }
+      end
     end
   end
 
