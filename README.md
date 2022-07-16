@@ -1,7 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## To Run this project please follow these steps:
+1. `rails db:create`
+2. `rails db:migrate`
+3. `bundle install`
+4. `rails server`
+
+## To avoid errors:
+* Check you psql connection
+* Ruby version must be equal to the 2.7
+* Check you have installed the active storage
 
 Things you may want to cover:
 
@@ -18,7 +26,3 @@ Things you may want to cover:
 * How to run the test suite
 
 * Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
